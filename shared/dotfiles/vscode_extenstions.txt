@@ -1,0 +1,16 @@
+bradlc.vscode-tailwindcss
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+github.copilot
+github.copilot-chat
+github.vscode-github-actions
+github.vscode-pull-request-github
+ms-azuretools.vscode-containers
+ms-azuretools.vscode-docker
+ms-kubernetes-tools.vscode-kubernetes-tools
+ms-vscode-remote.remote-containers
+redhat.vscode-xml
+redhat.vscode-yaml
+vivaxy.vscode-conventional-commits
+vscode-icons-team.vscode-icons
+vscodevim.vim

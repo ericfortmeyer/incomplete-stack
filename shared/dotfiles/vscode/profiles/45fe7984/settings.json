@@ -1,0 +1,26 @@
+{
+    "files.autoSave": "afterDelay",
+    "typescript.preferences.quoteStyle": "single",
+    "typescript.format.semicolons": "insert",
+    "typescript.tsserver.maxTsServerMemory": 4096,
+    "editor.quickSuggestionsDelay": 10,
+    "editor.smoothScrolling": true,
+    "terminal.integrated.scrollback": 50000,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "githubPullRequests.pullBranch": "never",
+    "files.exclude": {
+        "**/dist": true,
+        "**/node_modules": true
+    },
+    "search.exclude": {
+        "**/dist": true,
+        "**/node_modules": true
+    },
+    "files.watcherExclude": {
+        "**/.claude/**": true,
+        "**/.git/**": true,
+        "**/dist/**": true,
+        "**/logs/**": true,
+        "**/node_modules/**": true
+    }
+}
