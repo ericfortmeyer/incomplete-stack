@@ -11,6 +11,7 @@ repos:
       - id: check-added-large-files
   - hooks:
       - id: commitizen
+      - id: commitizen-branch
         stages:
           - post-commit
     repo: https://github.com/commitizen-tools/commitizen
