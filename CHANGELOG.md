@@ -1,3 +1,9 @@
+## 0.3.5 (2026-02-11)
+
+### Fix
+
+- **hiram**: correct vscode ext file name
+
 ## 0.3.4 (2026-02-11)
 
 ### Fix
