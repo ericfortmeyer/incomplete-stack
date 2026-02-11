@@ -3,7 +3,7 @@ set -euo pipefail
 
 USERS=(efortmeyer eric)
 DEFAULT_NODE_MAJOR=24
-NVM_VERSION="v0.39.7"
+NVM_VERSION="v0.40.4"
 
 echo "[devtools] Installing VS Code..."
 sudo apt install -y code
