@@ -1,0 +1,6 @@
+Types: deb
+URIs: https://repo.teamsforlinux.de/debian/
+Suites: stable
+Components: main
+Signed-By: /etc/apt/keyrings/teams-for-linux.asc
+Architectures: amd64
