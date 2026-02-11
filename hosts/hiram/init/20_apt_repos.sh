@@ -3,7 +3,7 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 CFG_DIR="${REPO_ROOT}/hosts/hiram/config"
-PREV_APT_PACKAGES=docs/frankenstein/apt-manual.txt
+PREV_APT_PACKAGES="${CFG_DIR}/apt-manual.txt"
 
 echo "[20_apt_repos] Ensuring /etc/apt/sources.list.d exists..."
 sudo mkdir -p /etc/apt/sources.list.d
