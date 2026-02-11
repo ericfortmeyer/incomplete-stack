@@ -28,10 +28,8 @@ cpio
 cron
 cron-daemon-common
 cryptsetup-initramfs
-cups-pk-helper
 curl
 dash
-dbeaver-ce
 dbus
 debconf
 debconf-i18n
@@ -43,7 +41,6 @@ debsuryorg-archive-keyring
 desktop-base
 diffutils
 discover
-dkms
 dmidecode
 dmsetup
 doc-debian
