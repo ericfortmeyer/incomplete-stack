@@ -2,7 +2,7 @@
 set -euo pipefail
 
 USERS=(efortmeyer eric)
-DEFAULT_NODE_MAJOR=20
+DEFAULT_NODE_MAJOR=24
 NVM_VERSION="v0.39.7"
 
 echo "[devtools] Installing VS Code..."
