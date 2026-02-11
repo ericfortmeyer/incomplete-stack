@@ -1,3 +1,9 @@
+## 0.3.1 (2026-02-10)
+
+### Fix
+
+- **hiram**: correct filename expansion
+
 ## 0.3.0 (2026-02-10)
 
 ### Feat
