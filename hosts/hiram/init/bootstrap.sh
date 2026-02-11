@@ -8,8 +8,6 @@ bash "${REPO_ROOT}/hosts/hiram/init/20_apt_repos.sh"
 bash "${REPO_ROOT}/hosts/hiram/init/30_docker.sh"
 bash "${REPO_ROOT}/hosts/hiram/init/40_devtools.sh"
 bash "${REPO_ROOT}/shared/scripts/restore_shell_configs.sh"
-bash "${REPO_ROOT}/shared/scripts/restore_chromium_bookmarks.sh"
-bash "${REPO_ROOT}/shared/scripts/install_vscode_extensions.sh"
 bash "${REPO_ROOT}/shared/scripts/install_oh_my_zsh.sh"
 
 
