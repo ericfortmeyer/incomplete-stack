@@ -1,5 +1,5 @@
 Types: deb
 URIs: https://packagecloud.io/slacktechnologies/slack/debian/
-Suites: trixie
+Suites: jessie
 Components: main
 Signed-By: /etc/apt/keyrings/slack.gpg
