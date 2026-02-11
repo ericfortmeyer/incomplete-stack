@@ -3,7 +3,6 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 
-bash "${REPO_ROOT}/hosts/hiram/init/00_prereqs.sh"
 bash "${REPO_ROOT}/hosts/hiram/init/10_users.sh"
 bash "${REPO_ROOT}/hosts/hiram/init/20_apt_repos.sh"
 bash "${REPO_ROOT}/hosts/hiram/init/30_docker.sh"
