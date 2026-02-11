@@ -1,3 +1,9 @@
+## 0.3.3 (2026-02-11)
+
+### Fix
+
+- **hiram**: use slack jessie, correct keyring perms
+
 ## 0.3.2 (2026-02-10)
 
 ### Fix
