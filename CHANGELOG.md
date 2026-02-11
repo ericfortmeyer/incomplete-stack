@@ -1,3 +1,12 @@
+## 0.3.4 (2026-02-11)
+
+### Fix
+
+- **hiram**: remove dbeaver
+- **hiram**: use pruned package list
+- **hiram**: remove missing packages
+- **hiram**: use php.list, use docker stable
+
 ## 0.3.3 (2026-02-11)
 
 ### Fix
