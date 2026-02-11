@@ -20,7 +20,8 @@ fi
 
 if [[ ! -f /etc/apt/keyrings/sury-php.gpg ]]; then
   echo "[20_apt_repos] Installing PHP GPG key..."
-  sudo curl -fsSL https://packages.sury.org/php/apt.gpg \
+  sudo install -d -m 0755 /etc/apt/keyrings
+  curl -fsSL https://packages.sury.org/php/apt.gpg \
     | sudo tee /etc/apt/keyrings/sury-php.gpg >/dev/null
   sudo chmod 0644 /etc/apt/keyrings/sury-php.gpg
 fi
@@ -29,7 +30,7 @@ if [[ ! -f /etc/apt/keyrings/slack.gpg ]]; then
   echo "[20_apt_repos] Installing Slack GPG key..."
   sudo install -d -m 0755 /etc/apt/keyrings
   curl -fsSL https://packagecloud.io/slacktechnologies/slack/gpgkey \
-    | sudo tee /etc/apt/keyrings/slack.gpg >/dev/null
+    | gpg --dearmor | sudo tee /etc/apt/keyrings/slack.gpg >/dev/null
   sudo chmod 0644 /etc/apt/keyrings/slack.gpg
 fi
 
