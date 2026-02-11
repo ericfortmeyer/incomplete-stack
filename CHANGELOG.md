@@ -1,3 +1,13 @@
+## 0.2.0 (2026-02-10)
+
+### Feat
+
+- **hiram**: use node lts
+
+### Fix
+
+- **hiram**: add missing sources files
+
 ## 0.1.1 (2026-02-10)
 
 ### Fix
