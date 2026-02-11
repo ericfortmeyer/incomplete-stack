@@ -33,7 +33,7 @@ if [[ ! -f /etc/apt/keyrings/slack.gpg ]]; then
   sudo chmod 0644 /etc/apt/keyrings/slack.gpg
 fi
 
-for source_path in "${CFG_DIR}"/*.sources; do
+for source_path in "${CFG_DIR}"/apt-sources/*.sources; do
     src=$(basename $source_path)
     echo "[20_apt_repos] Installing ${src} file..."
     sudo install -m 0644 "${CFG_DIR}/apt-sources/${src}" /etc/apt/sources.list.d/${src}
