@@ -18,6 +18,9 @@
         ./modules/services.nix
         ./modules/filesystems.nix
       ];
+      specialArgs = {
+        projectRoot = self;
+      };
     };
   };
 }

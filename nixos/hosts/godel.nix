@@ -1,18 +1,22 @@
 { config, pkgs, lib, ... }:
 {
   networking.hostName = "godel";
-  time.timeZone = "America/Denver";
-  i18n.defaultLocale = "en_US.UTF-8";
+  networking.useDHCP = true;
 
-  # Boot (UEFI)
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  imports = [ 
+    /etc/nixos/hardware-configuration.nix
+    ../modules/base.nix
+    ../modules/filesystems.nix
+    ../modules/services.nix
+    ../modules/user.nix
+  ];
 
-  # Enable flakes & new CLI inside Nix
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # BIOS + GPT: install GRUB to the disk MBR; copy kernels to /boot (ext4)
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/disk/by-id/ata-PNY_CS900_500GB_SSD_PNY24142404020100794";
+    forceInstall = true;
+    copyKernels = true;
+  };
 
-  # Option 1 (easy night-one): import the installer’s hardware config
-  # imports = [ /etc/nixos/hardware-configuration.nix ];
-
-  # Option 2: if you encoded filesystems in modules/filesystems.nix, leave imports empty.
 }
