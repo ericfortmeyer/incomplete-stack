@@ -1,5 +1,12 @@
 { config, pkgs, lib, ... }:
 {
+  # Pre-headless GNOME configuration
+  services.xserver = {
+    enable = true;
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
+  };
+
   services.openssh = {
     enable = true;
     settings = {
@@ -12,7 +19,6 @@
 
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = true;
-  environment.systemPackages = with pkgs; [ docker-compose ];
 
   nix.gc = {
     automatic = true;

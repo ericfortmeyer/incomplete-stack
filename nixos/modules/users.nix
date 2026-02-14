@@ -1,15 +1,17 @@
-{ config, pkgs, lib, ... }:
-let
-  efortmeyerKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC4S1JbkgQ3xXSQRwpfJH8zny48XeBu5u9WzuQh4rFap Clutch Property Management";
-
-in {
+{ pkgs, projectRoot, ... }:
+{
   users.mutableUsers = true;
 
   users.users.efortmeyer = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
-    openssh.authorizedKeys.keys = [ efortmeyerKey ];
+    group        = true;
+    extraGroups  = [ "wheel" "networkmanager" "docker" ];
+    shell        = pkgs.zsh;
+    openssh.authorizedKeys.keyFiles = [
+      projectRoot + /hosts/godel/authorized_keys/efortmeyer_godel_ed25519.pub
+    ];
   };
 
-  security.sudo.wheelNeedsPassword = false;  # flip to true if you want
+
+  security.sudo.wheelNeedsPassword = false;
 }
