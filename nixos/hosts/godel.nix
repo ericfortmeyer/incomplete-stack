@@ -11,6 +11,7 @@
   ];
   # initrd: enable ssh session while system boots
   boot.kernelParams = [ "ip=::::${config.networking.hostName}::dhcp" ];
+  boot.kernelModules = [ "broadcom" ];
   boot.initrd = {
     kernelModules = [
       "broadcom"
