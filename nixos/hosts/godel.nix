@@ -48,12 +48,12 @@
         authorizedKeys = import ../../hosts/godel/authorized_keys.nix;
 
         # Present the unlock prompt immediately on login
-        shell = "/bin/cryptsetup-askpass";
+        shell = "/bin/ash";
       };
 
       # ── Initrd MOTD: Gödel Numbers (colorized, BusyBox/printf‑safe) ─────────
       postCommands = ''
-        cat >> /root/.profile << 'EOF'
+        cat > /root/.profile << 'EOF'
 
 # ------------------------- Gödel-Number MOTD (initrd) --------------------------
 # Use printf with ANSI escapes (BusyBox-safe) to avoid echo -e portability issues.
@@ -86,6 +86,8 @@ printf "\033[0m"   # reset
 echo ""
 # ------------------------------------------------------------------------------
 
+# Hand off to the unlock prompt and leave the shell
+exec /bin/cryptsetup-askpass
 EOF
       '';
     };
