@@ -15,8 +15,6 @@
     availableKernelModules = [
       "e1000e"
       "igb"
-      "r8169"
-      "r8168"
     ];
     network = {
       enable = true;
