@@ -11,9 +11,6 @@
   ];
 
   # initrd: enable ssh session while system boots
-
-  boot.initrd.network.enable = true;
-
   boot.initrd = {
     network = {
       enable = true;
@@ -26,6 +23,10 @@
     };
     secrets."/etc/ssh/initrd_host_ed25519" =
       "/var/lib/initrd-ssh/host_ed25519";
+    luks.devices."cryptroot" = {
+      device = "/dev/disk/by-uuid/e49bf8ee-5993-48f7-8013-fee3fb14940d";
+      allowDiscards = true;
+    };
   };
 
 
@@ -38,11 +39,6 @@
     device = "/dev/disk/by-path/pci-0000:00:1f.2-ata-2.0";
     forceInstall = true;
     copyKernels = true;
-  };
-
-  boot.initrd.luks.devices."cryptroot" = {
-    device = "/dev/disk/by-uuid/e49bf8ee-5993-48f7-8013-fee3fb14940d";
-    allowDiscards = true;
   };
 
   # fileSystems."/srv" = {
