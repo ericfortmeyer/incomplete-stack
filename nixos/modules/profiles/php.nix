@@ -17,7 +17,7 @@
     phpExtensions.xml
     phpExtensions.zip
     phpPackages.composer
-    phpPackages.phpstan
     phpPackages.psysh
+    phpstan
   ];
 }
