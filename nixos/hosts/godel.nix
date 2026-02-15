@@ -9,12 +9,11 @@
     ../modules/services.nix
     ../modules/users.nix
   ];
-
   # initrd: enable ssh session while system boots
+  boot.kernelParams = [ "ip=::::${config.networking.hostName}::dhcp" ];
   boot.initrd = {
     availableKernelModules = [
-      "e1000e"
-      "igb"
+      "tg3"
     ];
     network = {
       enable = true;
@@ -24,6 +23,7 @@
         port = 2222;
         hostKeys = [ "/etc/ssh/initrd_host_ed25519" ];
         authorizedKeys = import ../../hosts/godel/authorized_keys.nix;
+        shell = "/bin/cryptsetup-askpass";
       };
     };
     secrets."/etc/ssh/initrd_host_ed25519" =
