@@ -49,7 +49,7 @@
         authorizedKeys = import ../../hosts/godel/authorized_keys.nix;
 
         # Present the unlock prompt immediately on login
-        shell = "/bin/ash";
+        shell = "/bin/sh";
       };
 
       # ── Initrd MOTD: Gödel Numbers (colorized, BusyBox/printf‑safe) ─────────
