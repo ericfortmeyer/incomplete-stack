@@ -32,9 +32,6 @@
 
     # Global /etc/zshrc add-ons (minimal noise; ssh-aware)
     shellInit = ''
-      # Use plugins
-      plugins=(docker zsh-autosuggestions zsh-syntax-highlighting git)
-
       source $ZSH/oh-my-zsh.sh
 
       # History (XDG-friendly)
