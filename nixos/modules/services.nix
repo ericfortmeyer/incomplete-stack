@@ -1,19 +1,38 @@
 { config, pkgs, lib, ... }:
 {
-  # Pre-headless GNOME configuration
-  services.xserver = {
-    enable = true;
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
-  };
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Headless server mode (no GUI)
+  # ─────────────────────────────────────────────────────────────────────────────
+  services.xserver.enable = false;               # Ensure no X11 stack
+  services.displayManager.gdm.enable = false;    # Just in case (DM abstraction)
+  services.desktopManager.gnome.enable = false;  # Just in case (DE abstraction)
+
+  # Ensure we boot to multi-user.target (default for headless systems)
+  systemd.defaultUnit = "multi-user.target";
 
   services.openssh = {
     enable = true;
     settings = {
-      PermitRootLogin = "no";
+      PermitRootLogin = "prohibit-password";
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       X11Forwarding = false;
+      # (Optional) keep SSH sessions alive
+      ClientAliveInterval = 60;
+      ClientAliveCountMax = 3;
+    };
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+    publish = {
+      enable = true;
+      workstation = true;
+      addresses = true;
+      hinfo = true;
+      domain = true;
     };
   };
 

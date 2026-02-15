@@ -2,24 +2,21 @@
   description = "Fleet of NixOS systems";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
   };
 
-  outputs = { self, nixpkgs, ... }:
+  outputs = { nixpkgs, ... }:
   let
     system = "x86_64-linux";
+    rootPath = ../.;
   in {
     nixosConfigurations.godel = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        ./hosts/godel.nix          # <- singular host file
-        ./modules/base.nix
-        ./modules/users.nix
-        ./modules/services.nix
-        ./modules/filesystems.nix
+        ./hosts/godel.nix
       ];
       specialArgs = {
-        projectRoot = self;
+        projectRoot = rootPath;
       };
     };
   };

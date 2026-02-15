@@ -1,12 +1,17 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, modulesPath, ... }:
 {
-  # fileSystems."/srv" = {
-  #   device = "/dev/disk/by-uuid/<HDD_UUID>";
-  #   fsType = "btrfs";
-  # }
-  # fileSystems."/var/log" = {
-  #   device = "/srv/logs/local"; 
-  #   fsType = "none";
-  #   options = [ "bind" ];
-  # };
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix")
+    ];
+
+  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "firewire_ohci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
+
+  swapDevices = [ ];
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
 }
