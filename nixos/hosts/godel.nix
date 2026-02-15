@@ -31,6 +31,7 @@
     ../modules/profiles/shell.nix
     ../modules/profiles/vpn-homelab.nix
     ../modules/services.nix
+    ../modules/shell/p10k.nix
     ../modules/users.nix
   ];
 
