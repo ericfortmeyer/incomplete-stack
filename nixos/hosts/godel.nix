@@ -12,11 +12,19 @@
   # initrd: enable ssh session while system boots
   boot.kernelParams = [ "ip=::::${config.networking.hostName}::dhcp" ];
   boot.initrd = {
-    availableKernelModules = [
+    kernelModules = [
+      "broadcom"
       "tg3"
+    ];
+    extraFirmwarePaths = [
+      "tigon/tg3.bin"
+      "tigon/tg3_tso.bin"
+      "tigon/tg3_tso5.bin"
+      "tigon/tg357766.bin"
     ];
     network = {
       enable = true;
+      flushBeforeStage2 = true;
       udhcpc.enable = true;
       ssh = {
         enable = true;
@@ -33,6 +41,8 @@
       allowDiscards = true;
     };
   };
+  hardware.enableRedistributableFirmware = true;
+  hardware.firmware = [ pkgs.linux-firmware ];
 
 
 
