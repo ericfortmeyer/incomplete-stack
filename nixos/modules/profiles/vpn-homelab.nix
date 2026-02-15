@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     wireguard-tools
     wireguard-go
-    resolvconf
+    openresolv
     qrencode
     iproute2
     iptables
