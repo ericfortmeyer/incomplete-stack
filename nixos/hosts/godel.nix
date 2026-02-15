@@ -22,7 +22,7 @@
       };
     };
     secrets."/etc/ssh/initrd_host_ed25519" =
-      "/var/lib/initrd-ssh/host_ed25519";
+      lib.mkForce "/var/lib/initrd-ssh/host_ed25519";
     luks.devices."cryptroot" = {
       device = "/dev/disk/by-uuid/e49bf8ee-5993-48f7-8013-fee3fb14940d";
       allowDiscards = true;
