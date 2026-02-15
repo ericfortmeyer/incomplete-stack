@@ -10,6 +10,28 @@
     ../modules/users.nix
   ];
 
+  # initrd: enable ssh session while system boots
+
+  boot.initrd.network.enable = true;
+
+  boot.initrd = {
+    network = {
+      enable = true;
+      ssh = {
+        enable = true;
+        port = 2222;
+        hostKeys = [ "/etc/ssh/initrd_host_ed25519" ];
+        authorizedKeys = import ../../hosts/godel/authorized_keys.nix;
+      };
+    };
+    secrets."/etc/ssh/initrd_host_ed25519" =
+      "/var/lib/initrd-ssh/host_ed25519";
+  };
+
+
+
+
+
   # BIOS + GPT: install GRUB to the disk MBR; copy kernels to /boot (ext4)
   boot.loader.grub = {
     enable = true;
