@@ -26,8 +26,6 @@
     ohMyZsh = {
       enable = true;
       plugins = [ "git" "docker" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
-      # We'll not load chucknorris on the server by default 😄
-      theme = "powerlevel10k/powerlevel10k";
     };
 
     # Global /etc/zshrc add-ons (minimal noise; ssh-aware)
@@ -56,9 +54,6 @@
       export EDITOR=vim
 
       eval $(ssh-agent -s)
-
-      # If you really need brew/go/node/deno paths here, set them per-host
-      # or move them into Home Manager; keeping server PATHs lean is best.
     '';
 
     # Let powerlevel10k initialize if present
