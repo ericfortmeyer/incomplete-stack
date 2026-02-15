@@ -13,7 +13,7 @@
   # BIOS + GPT: install GRUB to the disk MBR; copy kernels to /boot (ext4)
   boot.loader.grub = {
     enable = true;
-    device = "/dev/disk/by-partuuid/f1b23467-10c8-4b52-ba00-cf8c7e5c7a00";
+    device = "/dev/disk/by-path/pci-0000:00:1f.2-ata-2.0";
     forceInstall = true;
     copyKernels = true;
   };
