@@ -3,9 +3,9 @@
   # ─────────────────────────────────────────────────────────────────────────────
   # Headless server mode (no GUI)
   # ─────────────────────────────────────────────────────────────────────────────
-  services.xserver.enable = false;           # Ensure no X11 stack
-  services.displayManager.enable = false;    # Just in case (DM abstraction)
-  services.desktopManager.enable = false;    # Just in case (DE abstraction)
+  services.xserver.enable = false;               # Ensure no X11 stack
+  services.displayManager.gdm.enable = false;    # Just in case (DM abstraction)
+  services.desktopManager.gnome.enable = false;  # Just in case (DE abstraction)
 
   # Ensure we boot to multi-user.target (default for headless systems)
   # Not usually necessary to set explicitly, but leaving as doc:
