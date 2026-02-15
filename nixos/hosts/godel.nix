@@ -12,8 +12,15 @@
 
   # initrd: enable ssh session while system boots
   boot.initrd = {
+    availableKernelModules = [
+      "e1000e"
+      "igb"
+      "r8169"
+      "r8168"
+    ];
     network = {
       enable = true;
+      udhcpc.enable = true;
       ssh = {
         enable = true;
         port = 2222;
