@@ -33,8 +33,12 @@
 
     # Global /etc/zshrc add-ons (minimal noise; ssh-aware)
     shellInit = ''
+      # Use plugins
+      plugins=(docker zsh-autosuggestions zsh-syntax-highlighting git chucknorris)
+
+      source $ZSH/oh-my-zsh.sh
+
       # History (XDG-friendly)
-      HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history
       HISTSIZE=100000
       SAVEHIST=100000
       setopt HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS EXTENDED_HISTORY SHARE_HISTORY
@@ -54,11 +58,8 @@
 
       # Your commonly used envs (trimmed to practical server-side)
       export EDITOR=vim
-      export SECRETS_DIR="$HOME/secrets"
-      export SECRETS_APP_PATH="kv/data"
-      export SECRETS_LOGIN_PATH="auth/userpass/login"
-      export SECRETS_SERVICE_HOST="https://127.0.0.1"
-      export SECRETS_SERVICE_PORT="8200"
+
+      eval $(ssh-agent -s)
 
       # If you really need brew/go/node/deno paths here, set them per-host
       # or move them into Home Manager; keeping server PATHs lean is best.
