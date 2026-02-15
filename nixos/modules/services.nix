@@ -8,8 +8,7 @@
   services.desktopManager.gnome.enable = false;  # Just in case (DE abstraction)
 
   # Ensure we boot to multi-user.target (default for headless systems)
-  # Not usually necessary to set explicitly, but leaving as doc:
-  # systemd.defaultUnit = "multi-user.target";
+  systemd.defaultUnit = "multi-user.target";
 
   services.openssh = {
     enable = true;
