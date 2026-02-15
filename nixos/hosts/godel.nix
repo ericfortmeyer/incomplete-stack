@@ -32,12 +32,15 @@
   # - Publish hostname during initrd DHCP to allow `ssh root@godel -p 2222`
   # - MOTD flair: colorized Gödel‑Number banner via /root/.profile
   # ────────────────────────────────────────────────────────────────────────────
-  boot.kernelParams = [ "ip=::::${config.networking.hostName}::dhcp" ];
+  boot.kernelParams = [ "ip=::::godel::dhcp" ];
 
   boot.initrd = {
     network = {
       enable = true;
-      udhcpc.enable = true;
+      udhcpc = {
+        enable = true;
+        extraArgs = [ "-x" "hostname:godel" ];
+      };
       flushBeforeStage2 = true;
 
       ssh = {
