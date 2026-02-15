@@ -5,7 +5,6 @@
     htop
     git
     oh-my-zsh
-    powerlevel10k
     zsh
     zsh-autosuggestions
     zsh-syntax-highlighting

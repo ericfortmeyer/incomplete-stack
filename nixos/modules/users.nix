@@ -18,6 +18,9 @@
   # ─────────────────────────────────────────────────────────────────────────────
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
 
     # Enable oh-my-zsh managed by Nix instead of manual $ZSH paths
     ohMyZsh = {
@@ -27,14 +30,10 @@
       theme = "powerlevel10k/powerlevel10k";
     };
 
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-
     # Global /etc/zshrc add-ons (minimal noise; ssh-aware)
     shellInit = ''
       # Use plugins
-      plugins=(docker zsh-autosuggestions zsh-syntax-highlighting git chucknorris)
+      plugins=(docker zsh-autosuggestions zsh-syntax-highlighting git)
 
       source $ZSH/oh-my-zsh.sh
 
@@ -67,6 +66,7 @@
 
     # Let powerlevel10k initialize if present
     promptInit = ''
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       # If a per-user ~/.p10k.zsh exists, source it; otherwise fallback to a lean prompt
       if [ -f ~/.p10k.zsh ]; then
         source ~/.p10k.zsh
