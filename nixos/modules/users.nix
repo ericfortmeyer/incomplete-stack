@@ -21,12 +21,6 @@
     enable = true;
     enableCompletion = true;
 
-    # Install external plugins declaratively
-    plugins = [
-      { name = "zsh-autosuggestions";     src = pkgs.zsh-autosuggestions;     }
-      { name = "zsh-syntax-highlighting"; src = pkgs.zsh-syntax-highlighting; }
-    ];
-
     # OMZ will be sourced automatically; DO NOT source $ZSH/oh-my-zsh.sh yourself
     ohMyZsh = {
       enable = true;
