@@ -1,3 +1,4 @@
+# users + zsh module (e.g., in hosts/godel.nix or your per-host module)
 { pkgs, projectRoot, ... }:
 {
   users.mutableUsers = true;
@@ -14,24 +15,27 @@
   };
 
   # ─────────────────────────────────────────────────────────────────────────────
-  # Zsh (oh-my-zsh + p10k) for godel (server-friendly, SSH-aware)
+  # Zsh (Oh‑My‑Zsh + p10k) — clean, reproducible, no stray /etc edits required
   # ─────────────────────────────────────────────────────────────────────────────
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
 
-    # Enable oh-my-zsh managed by Nix instead of manual $ZSH paths
+    # Install external plugins declaratively
+    plugins = [
+      { name = "zsh-autosuggestions";     src = pkgs.zsh-autosuggestions;     }
+      { name = "zsh-syntax-highlighting"; src = pkgs.zsh-syntax-highlighting; }
+    ];
+
+    # OMZ will be sourced automatically; DO NOT source $ZSH/oh-my-zsh.sh yourself
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "docker" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
+      plugins = [ "git" "docker" ];  # keep OMZ's built-ins here only
+      # Do NOT set 'theme' since we source p10k from Nix below.
     };
 
-    # Global /etc/zshrc add-ons (minimal noise; ssh-aware)
+    # Minimal /etc/zshrc additions (interactive shells)
     shellInit = ''
-      source $ZSH/oh-my-zsh.sh
-
       # History (XDG-friendly)
       HISTSIZE=100000
       SAVEHIST=100000
@@ -50,16 +54,12 @@
         printf "\033[36m==> Connected to godel (stage-2)\033[0m\n"
       fi
 
-      # Your commonly used envs (trimmed to practical server-side)
       export EDITOR=vim
-
-      eval $(ssh-agent -s)
     '';
 
-    # Let powerlevel10k initialize if present
+    # Powerlevel10k from Nix store; DO NOT set ZSH_THEME
     promptInit = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      # If a per-user ~/.p10k.zsh exists, source it; otherwise fallback to a lean prompt
       if [ -f ~/.p10k.zsh ]; then
         source ~/.p10k.zsh
       else

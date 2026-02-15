@@ -1,13 +1,17 @@
+# keep this separate module or same file, your choice
 { config, pkgs, lib, ... }:
 {
-  # Ensure p10k + zsh plugins are available
   environment.systemPackages = with pkgs; [
     htop
     git
-    oh-my-zsh
+    vim
     zsh
+    oh-my-zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-powerlevel10k
   ];
+
+  # (Optional) manage ssh-agent cleanly rather than eval $(ssh-agent -s) in each shell
+  programs.ssh.startAgent = true;
 }
