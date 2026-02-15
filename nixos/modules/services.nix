@@ -18,6 +18,9 @@
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       X11Forwarding = false;
+      # (Optional) keep SSH sessions alive
+      ClientAliveInterval = 60;
+      ClientAliveCountMax = 3;
     };
   };
 
