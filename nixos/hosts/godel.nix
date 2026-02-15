@@ -21,7 +21,7 @@
     ../modules/filesystems.nix
     ../modules/memory.nix
     ../modules/networking.nix
-    ../modules/packaing.nix
+    ../modules/packages.nix
     ../modules/services.nix
     ../modules/users.nix
   ];
