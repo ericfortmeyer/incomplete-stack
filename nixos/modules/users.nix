@@ -27,9 +27,10 @@
       "EXTENDED_HISTORY" 
       "SHARE_HISTORY"
     ];
+    
 
-    enableSyntaxHighlighting = true;
-    enableAutoSuggestions = true;
+    syntaxHighlighting.enable = true;
+    autosuggestions.enable = true;
 
     # OMZ will be sourced automatically; DO NOT source $ZSH/oh-my-zsh.sh yourself
     ohMyZsh = {
