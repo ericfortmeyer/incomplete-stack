@@ -50,17 +50,6 @@
 
       export EDITOR=vim
     '';
-
-    # Powerlevel10k from Nix store; DO NOT set ZSH_THEME
-    promptInit = ''
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      if [ -f ~/.p10k.zsh ]; then
-        source ~/.p10k.zsh
-      else
-        autoload -Uz colors && colors
-        PROMPT="%F{cyan}%n%f@%F{magenta}%m%f %F{yellow}%~%f %# "
-      fi
-    '';
   };
 
   # Make zsh the default shell for root and your user

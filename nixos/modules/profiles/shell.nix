@@ -9,6 +9,5 @@
     zsh-powerlevel10k
   ];
 
-  # (Optional) manage ssh-agent cleanly rather than eval $(ssh-agent -s) in each shell
   programs.ssh.startAgent = true;
 }
