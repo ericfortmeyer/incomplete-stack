@@ -2,9 +2,6 @@
 { config, pkgs, lib, ... }:
 {
   environment.systemPackages = with pkgs; [
-    htop
-    git
-    vim
     zsh
     oh-my-zsh
     zsh-autosuggestions
