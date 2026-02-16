@@ -1,3 +1,13 @@
+## 0.6.0 (2026-02-15)
+
+### Feat
+
+- **godel**: enable autosuggestions and syntax highlighting in zsh
+
+### Fix
+
+- **godel**: use correct name for knob
+
 ## 0.5.0 (2026-02-15)
 
 ### Feat
