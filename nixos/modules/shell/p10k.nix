@@ -40,7 +40,7 @@ let
   # Command time: show if > 1s; concise format.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=magenta
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='\${duration}'
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT="''${duration}"
 
   # Time (right side).
   typeset -g POWERLEVEL9K_TIME_FOREGROUND=cyan
@@ -96,8 +96,8 @@ let
 
   # Nix shell indicator (shows 'nix' + shell name).
   typeset -g POWERLEVEL9K_NIX_SHELL_FOREGROUND=blue
-  typeset -g POWERLEVEL9K_NIX_SHELL_CONTENT_EXPANSION='nix:\${P9K_CONTENT}'
-  typeset -g POWERLEVEL9K_NIX_SHELL_PROMPT_SUFFIX=''
+  typeset -g POWERLEVEL9K_NIX_SHELL_CONTENT_EXPANSION="nix:''${P9K_CONTENT}"
+  typeset -g POWERLEVEL9K_NIX_SHELL_PROMPT_SUFFIX=""
 
   # Python virtualenv (pyenv/venv).
   typeset -g POWERLEVEL9K_PYENV_FOREGROUND=magenta
@@ -110,7 +110,7 @@ let
 
   # Kubernetes (if kubectl present): context/namespace trimmed.
   typeset -g POWERLEVEL9K_KUBECONTEXT_FOREGROUND=cyan
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION='k8s:\${P9K_KUBECONTEXT_NAME}/\${P9K_KUBECONTEXT_NAMESPACE}'
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION="k8s:''${P9K_KUBECONTEXT_NAME}/''${P9K_KUBECONTEXT_NAMESPACE}"
   typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|k9s'
 
   # Exit status: only on error.
@@ -121,7 +121,7 @@ let
   # Command time if >1s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=magenta
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='\${duration}'
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT="''${duration}"
 
   # Time (right).
   typeset -g POWERLEVEL9K_TIME_FOREGROUND=cyan
