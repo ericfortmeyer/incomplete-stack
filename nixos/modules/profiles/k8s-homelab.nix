@@ -10,7 +10,6 @@
     kind
     kubectl
     kubectx
-    kubens
     kubernetes-helm
     kustomize
     minikube

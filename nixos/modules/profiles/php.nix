@@ -18,6 +18,5 @@
     phpExtensions.zip
     phpPackages.composer
     phpstan
-    psysh
   ];
 }
