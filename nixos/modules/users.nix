@@ -20,21 +20,31 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    histSize = 100000;
+    setOptions = [
+      "HIST_IGNORE_ALL_DUPS"
+      "HIST_FIND_NO_DUPS" 
+      "EXTENDED_HISTORY" 
+      "SHARE_HISTORY"
+    ];
+    
+
+    syntaxHighlighting.enable = true;
+    autosuggestions.enable = true;
 
     # OMZ will be sourced automatically; DO NOT source $ZSH/oh-my-zsh.sh yourself
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "docker" ];  # keep OMZ's built-ins here only
-      # Do NOT set 'theme' since we source p10k from Nix below.
+      plugins = [ 
+        "git" 
+        "docker"
+        "man"
+        "ssh-agent"
+      ];
     };
 
     # Minimal /etc/zshrc additions (interactive shells)
     shellInit = ''
-      # History (XDG-friendly)
-      HISTSIZE=100000
-      SAVEHIST=100000
-      setopt HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS EXTENDED_HISTORY SHARE_HISTORY
-
       # Less noisy ctrl-s/ctrl-q
       stty -ixon 2>/dev/null || true
 
