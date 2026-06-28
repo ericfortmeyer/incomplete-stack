@@ -18,9 +18,9 @@
   # ────────────────────────────────────────────────────────────────────────────
   imports = [
     ../modules/base.nix
-    ../modules/filesystems.nix
     ../modules/memory.nix
     ../modules/networking.nix
+    ../modules/filesystems
     ../modules/users
     ../modules/packages
     ../modules/services
