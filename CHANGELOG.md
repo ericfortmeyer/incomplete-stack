@@ -1,3 +1,10 @@
+## 0.6.2 (2026-06-28)
+
+### Fix
+
+- **godel**: use correct configuration file syntax
+- **godel**: correct configuration file syntax errors
+
 ## 0.6.1 (2026-06-28)
 
 ### Fix
