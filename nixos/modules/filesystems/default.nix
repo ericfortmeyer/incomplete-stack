@@ -1,1 +1,5 @@
-imports = [ ./base.nix ];
+{ config, pkgs, ... }
+
+{
+  imports = [ ./base.nix ];
+}

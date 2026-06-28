@@ -1,1 +1,5 @@
-imports = [ ./p10k.nix ];
+{ config, pkgs, ... }
+
+{
+  imports = [ ./p10k.nix ];
+}
