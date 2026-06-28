@@ -1,8 +1,6 @@
 # users + zsh module (e.g., in hosts/godel.nix or your per-host module)
 { pkgs, projectRoot, ... }:
 {
-  users.mutableUsers = true;
-
   users.users.efortmeyer = {
     isNormalUser = true;
     group        = "users";
@@ -23,11 +21,11 @@
     histSize = 100000;
     setOptions = [
       "HIST_IGNORE_ALL_DUPS"
-      "HIST_FIND_NO_DUPS" 
-      "EXTENDED_HISTORY" 
+      "HIST_FIND_NO_DUPS"
+      "EXTENDED_HISTORY"
       "SHARE_HISTORY"
     ];
-    
+
 
     syntaxHighlighting.enable = true;
     autosuggestions.enable = true;
@@ -35,8 +33,8 @@
     # OMZ will be sourced automatically; DO NOT source $ZSH/oh-my-zsh.sh yourself
     ohMyZsh = {
       enable = true;
-      plugins = [ 
-        "git" 
+      plugins = [
+        "git"
         "docker"
         "man"
         "ssh-agent"
@@ -61,7 +59,4 @@
       export EDITOR=vim
     '';
   };
-
-  # Make zsh the default shell for root and your user
-  users.users.root.shell = pkgs.zsh;
 }
