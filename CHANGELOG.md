@@ -1,3 +1,13 @@
+## 0.6.1 (2026-06-28)
+
+### Fix
+
+- **godel**: correct import of filesystems module
+
+### Refactor
+
+- **godel**: simplify module structure
+
 ## 0.6.0 (2026-02-15)
 
 ### Feat
