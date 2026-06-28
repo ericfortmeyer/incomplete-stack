@@ -21,18 +21,10 @@
     ../modules/filesystems.nix
     ../modules/memory.nix
     ../modules/networking.nix
-    ../modules/profiles/cli-qol.nix
-    ../modules/profiles/containers.nix
-    ../modules/profiles/dev-base.nix
-    ../modules/profiles/fp-stack.nix
-    ../modules/profiles/k8s-homelab.nix
-    ../modules/profiles/netops.nix
-    ../modules/profiles/php.nix
-    ../modules/profiles/shell.nix
-    ../modules/profiles/vpn-homelab.nix
-    ../modules/services.nix
-    ../modules/shell/p10k.nix
-    ../modules/users.nix
+    ../modules/users
+    ../modules/packages
+    ../modules/services
+    ../modules/shell
   ];
 
   # ────────────────────────────────────────────────────────────────────────────
