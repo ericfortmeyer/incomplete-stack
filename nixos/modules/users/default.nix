@@ -1,5 +1,9 @@
-imports = [
-  ./base.nix
-  ./efortmeyer.nix
-  ./root.nix
-];
+{ config, pkgs, ... }
+
+{
+  imports = [
+    ./base.nix
+    ./efortmeyer.nix
+    ./root.nix
+  ];
+}
