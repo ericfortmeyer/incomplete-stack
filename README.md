@@ -28,10 +28,13 @@ intentionally unfinished.
 ```zsh
 # From a Nix-enabled workstation
 git clone <this-repo>
-cd incomplete-stack/nixos
+cd incomplete-stack
+rsync -av --progress nixos/ <godel-ip>:.config/nixos-flake
 
-# Switch Gödel to HEAD (via SSH or console)
-nixos-rebuild switch --flake .#godel
+# On Gödel to HEAD (via SSH or console)
+ssh <godel-ip> nix flake check ~/.config/nixos-flake
+ssh <godel-ip> nix flake update --flake ~/.config/nixos-flake
+ssh <godel-ip> nixos-rebuild switch --flake ~/.config/nixos-flake#godel
 ```
 
 Boot flow: initrd SSH is enabled for remote LUKS unlock. During early boot,
@@ -45,9 +48,9 @@ you can connect to the initrd (port 2222) and enter the passphrase remotely.
 - use a static IP, a router DNS reservation, or a client /etc/hosts entry.
 
 ```zsh
-ssh -p 2222 root@<initrd-ip>
+ssh -o RequestTTY=force -p 2222 root@<initrd-ip> systemd-tty-ask-password-agent --watch
 
-# you'll see the Gödel-number MOTD, then a cryptsetup passphrase promp
+# you'll see a cryptsetup passphrase prompt
 ```
 
 ## Hosts

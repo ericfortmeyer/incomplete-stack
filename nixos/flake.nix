@@ -2,10 +2,10 @@
   description = "Fleet of NixOS systems";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
   };
 
-  outputs = { nixpkgs, ... }:
+  outputs = { self, nixpkgs, ... }:
   let
     system = "x86_64-linux";
     rootPath = ../.;
@@ -16,6 +16,7 @@
         ./hosts/godel.nix
       ];
       specialArgs = {
+        inherit self;
         projectRoot = rootPath;
       };
     };

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, projectRoot, self, ... }:
 
 {
   # ════════════════════════════════════════════════════════════════════════════
@@ -31,7 +31,6 @@
   # Stage‑1 networking & SSH for remote unlock (initrd)
   # - DHCP in stage‑1: explicitly enable udhcpc (required on 23.11+)
   # - Publish hostname during initrd DHCP to allow `ssh root@godel -p 2222`
-  # - MOTD flair: colorized Gödel‑Number banner via /root/.profile
   # ────────────────────────────────────────────────────────────────────────────
   boot.kernelParams = [
     # ip=<client-ip>::<gateway>:<netmask>:<hostname>:<iface>:<autoconf>:<dns>
@@ -41,8 +40,6 @@
   boot.initrd = {
     network = {
       enable = true;
-      udhcpc.enable = true;
-      flushBeforeStage2 = true;
 
       ssh = {
         enable = true;
@@ -50,51 +47,14 @@
 
         # Dedicated initrd host key material (NOT your normal host key)
         hostKeys = [ "/etc/ssh/initrd_host_ed25519" ];
-        authorizedKeys = import ../../hosts/godel/authorized_keys.nix;
-
-        # Present the unlock prompt immediately on login
-        shell = "/bin/sh";
+        authorizedKeys =
+          let
+            mkCmdKey = pubkey: ''command="systemctl default" ${pubkey}'';
+            keys = import ../authorized_keys.nix { inherit self; };
+          in
+          map mkCmdKey keys;
       };
 
-      # ── Initrd MOTD: Gödel Numbers (colorized, BusyBox/printf‑safe) ─────────
-      postCommands = ''
-        cat > /root/.profile << 'EOF'
-
-# ------------------------- Gödel-Number MOTD (initrd) --------------------------
-# Use printf with ANSI escapes (BusyBox-safe) to avoid echo -e portability issues.
-# Colors: CYAN header/body, YELLOW prompt, RESET at the end.
-
-printf "\033[36m"  # set cyan
-echo ""
-echo "  ┌──────────────────────────────────────────────────────────────┐"
-echo "  │        Gödel Numbering — godel initrd remote unlock          │"
-echo "  ├──────────────────────────────────────────────────────────────┤"
-echo "  │  Let ⟦ϕ⟧ denote the Gödel number of formula ϕ.               │"
-echo "  │                                                              │"
-echo "  │  Define the statement G such that:                           │"
-echo "  │                                                              │"
-echo "  │         G  ≡  ¬Provable( ⟦G⟧ )                               │"
-echo "  │                                                              │"
-echo "  │  i.e., G asserts its own unprovability via arithmetic        │"
-echo "  │  encoded into ℕ.                                             │"
-echo "  ├──────────────────────────────────────────────────────────────┤"
-echo "  │  Current evaluation:                                         │"
-echo "  │      Γ ⊢ Unlock(godel) : True   only if passphrase provided. │"
-echo "  │                                                              │"
-echo "  │  You now act as the external oracle deciding the truth       │"
-echo "  │  of a statement the system cannot prove internally.          │"
-echo "  └──────────────────────────────────────────────────────────────┘"
-echo ""
-printf "\033[33m"  # set yellow
-echo "  godel:initrd > supply the oracle value (LUKS passphrase)…"
-printf "\033[0m"   # reset
-echo ""
-# ------------------------------------------------------------------------------
-
-# Hand off to the unlock prompt and leave the shell
-exec /bin/cryptsetup-askpass
-EOF
-      '';
     };
 
     # Map dedicated initrd host key into initrd

@@ -7,8 +7,8 @@
     extraGroups  = [ "wheel" "networkmanager" "docker" ];
     shell        = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [
-      (projectRoot + /hosts/godel/authorized_keys/efortmeyer_godel_ed25519.pub)
-      (projectRoot + /hosts/godel/authorized_keys/manna_godel_ed25519.pub)
+      (../../authorized_keys/efortmeyer_godel_ed25519.pub)
+      (../../authorized_keys/manna_godel_ed25519.pub)
     ];
   };
 
@@ -52,9 +52,9 @@
       alias l='ls -CF --color=auto'
 
       # Tiny header when SSH-ing into godel (stage-2, not initrd)
-      if [ "$(hostname)" = "godel" ] && [ -n "$SSH_CONNECTION" ]; then
-        printf "\033[36m==> Connected to godel (stage-2)\033[0m\n"
-      fi
+      #if [ "$(hostname)" = "godel" ] && [ -n "$SSH_CONNECTION" ]; then
+      #  printf "\033[36m==> Connected to godel (stage-2)\033[0m\n"
+      #fi
 
       export EDITOR=vim
     '';
