@@ -28,7 +28,7 @@ a spare USB keyboard (or a tiny HID “dummy keyboard” dongle) remains plugged
      If the router doesn’t publish hostnames, use a DHCP reservation or a client `/etc/hosts` entry.
 - `.local` (mDNS) is available **after** stage‑2 when Avahi starts.
 
-You’ll see a **Gödel-number MOTD** and then an interactive **cryptsetup** prompt.
+You’ll see an interactive **cryptsetup** prompt.
 
 ---
 
@@ -73,7 +73,7 @@ Service enablement (k8s cluster, WireGuard interfaces, etc.) is out of scope her
 - Clone repo and rebuild:
 
 ```nix
-nixos-rebuild switch --flake .#godelShow more lines
+nixos-rebuild switch --flake ~/.config/nixos-flake#godel
 ```
 
 - Reboot; unlock via initrd SSH on port 2222.
