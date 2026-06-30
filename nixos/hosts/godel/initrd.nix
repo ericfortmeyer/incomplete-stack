@@ -10,7 +10,7 @@
         port = 2222;
 
         # Dedicated initrd host key material (NOT your normal host key)
-        hostKeys = [ "/etc/ssh/initrd_host_ed25519" ];
+        hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519" ];
         authorizedKeys =
           let
             mkCmdKey = pubkey: ''command="systemctl default" ${pubkey}'';
@@ -25,22 +25,33 @@
 
     };
 
-    # Map dedicated initrd host key into initrd
-    secrets."/etc/ssh/initrd_host_ed25519" =
-      lib.mkForce "/var/lib/initrd-ssh/host_ed25519";
+    secrets = {
+      "/luks-keys/hdd-cold-storage.key" = "/root/.luks-keys/hdd-cold-storage.key";
+    };
 
     # ──────────────────────────────────────────────────────────────────────────
     # NIC drivers for initrd (order matters): Broadcom PHY first, then tg3 NIC
     # ──────────────────────────────────────────────────────────────────────────
     kernelModules = [ "broadcom" "tg3" ];
 
-    # ──────────────────────────────────────────────────────────────────────────
-    # LUKS (root) — remote unlock happens via initrd SSH
-    # ──────────────────────────────────────────────────────────────────────────
-    luks.devices."cryptroot" = {
-      device = "/dev/disk/by-uuid/e49bf8ee-5993-48f7-8013-fee3fb14940d";
-      allowDiscards = true;
+    luks.devices = {
+      # ──────────────────────────────────────────────────────────────────────────
+      # LUKS (root) — remote unlock happens via initrd SSH
+      # ──────────────────────────────────────────────────────────────────────────
+      "cryptroot" = {
+        device = "/dev/disk/by-uuid/e49bf8ee-5993-48f7-8013-fee3fb14940d";
+        allowDiscards = true;
+      };
+
+      # ──────────────────────────────────────────────────────────────────────────
+      # Encrypted HDD unlock (automatic, no password prompt)
+      # ──────────────────────────────────────────────────────────────────────────
+      "hdd-storage" = {
+        device = "/dev/disk/by-uuid/be21076d-b869-4d32-9179-a6b167745169";
+        keyFile = "/luks-keys/hdd-cold-storage.key";
+      };
     };
+
 
     # ──────────────────────────────────────────────────────────────────────────
     # Firmware required by tg3 (tigon) — include in initrd explicitly
