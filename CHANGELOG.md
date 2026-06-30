@@ -1,3 +1,18 @@
+## 0.8.0 (2026-06-30)
+
+### Feat
+
+- **godel**: mount cold storage
+
+### Fix
+
+- **godel**: use luks key path available to initrd (#27)
+- **godel**: add nameservers
+
+### Refactor
+
+- **godel**: modularize host config
+
 ## 0.7.0 (2026-06-28)
 
 ### Feat
