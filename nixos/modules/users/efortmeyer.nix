@@ -7,8 +7,8 @@
     extraGroups  = [ "wheel" "networkmanager" "docker" ];
     shell        = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [
-      (../../authorized_keys/efortmeyer_godel_ed25519.pub)
-      (../../authorized_keys/manna_godel_ed25519.pub)
+      (../../hosts/godel/authorized_keys/efortmeyer_godel_ed25519.pub)
+      (../../hosts/godel/authorized_keys/manna_godel_ed25519.pub)
     ];
   };
 

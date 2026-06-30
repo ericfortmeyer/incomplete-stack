@@ -1,11 +1,11 @@
 {
-  description = "Fleet of NixOS systems";
+  description = "Gödel — My Homelab 🧪";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
   };
 
-  outputs = { self, nixpkgs, ... }:
+  outputs = { nixpkgs, ... }:
   let
     system = "x86_64-linux";
     rootPath = ../.;
@@ -13,10 +13,9 @@
     nixosConfigurations.godel = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        ./hosts/godel.nix
+        ./hosts/godel
       ];
       specialArgs = {
-        inherit self;
         projectRoot = rootPath;
       };
     };
