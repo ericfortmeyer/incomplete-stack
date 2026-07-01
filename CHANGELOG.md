@@ -1,3 +1,13 @@
+## 0.9.0 (2026-07-01)
+
+### Feat
+
+- **godel**: add private docker registry (#29)
+
+### Refactor
+
+- **godel**: move each service into its own file (#28)
+
 ## 0.8.0 (2026-06-30)
 
 ### Feat
