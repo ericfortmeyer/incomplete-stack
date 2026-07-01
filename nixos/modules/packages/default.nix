@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
 
 {
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
   imports = [
     ./cli-qol.nix
     ./containers.nix

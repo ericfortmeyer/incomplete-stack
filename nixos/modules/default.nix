@@ -3,13 +3,13 @@
 {
   imports = [
     ./base.nix
+    ./gc.nix
     ./memory.nix
     ./networking.nix
     ./filesystems
-    ./users
     ./packages
     ./services
     ./shell
+    ./users
   ];
-
 }
