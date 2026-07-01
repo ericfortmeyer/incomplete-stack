@@ -14,5 +14,7 @@
   # ────────────────────────────────────────────────────────────────────────────
   # Stage‑2: ensure Broadcom PHY module is available after switch to real root
   # ────────────────────────────────────────────────────────────────────────────
-  boot.kernelModules = [ "broadcom" ];
+  boot.kernelModules = [ "broadcom" "kvm-intel" ];
+
+  boot.extraModulePackages = [ ];
 }

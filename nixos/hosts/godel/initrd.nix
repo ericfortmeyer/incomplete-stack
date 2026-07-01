@@ -33,6 +33,14 @@
     # NIC drivers for initrd (order matters): Broadcom PHY first, then tg3 NIC
     # ──────────────────────────────────────────────────────────────────────────
     kernelModules = [ "broadcom" "tg3" ];
+    availableKernelModules = [
+      "ahci"
+      "ehci_pci"
+      "firewire_ohci"
+      "sd_mod"
+      "usb_storage"
+      "usbhid"
+    ];
 
     luks.devices = {
       # ──────────────────────────────────────────────────────────────────────────
