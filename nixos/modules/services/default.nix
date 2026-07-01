@@ -5,6 +5,7 @@
     ./avahi.nix
     ./desktopManager.nix
     ./displayManager.nix
+    ./docker-registry.nix
     ./openssh.nix
     ./systemd.nix
     ./virtualisation.nix
