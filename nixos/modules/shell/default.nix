@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
-  imports = [ ./p10k.nix ];
+  imports = [
+    ./zsh.nix
+    ./zshrc.nix
+  ];
 }

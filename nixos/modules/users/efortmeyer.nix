@@ -1,62 +1,17 @@
 # users + zsh module (e.g., in hosts/godel.nix or your per-host module)
 { pkgs, projectRoot, ... }:
 {
+  imports = [
+    ../shell/autocompletion.nix
+    ../shell/omz.nix
+    ../shell/p10k.nix
+    ../shell/syntaxHighlighting.nix
+  ];
+
   users.users.efortmeyer = {
     isNormalUser = true;
     group        = "users";
     extraGroups  = [ "wheel" "networkmanager" "docker" ];
     shell        = pkgs.zsh;
-    openssh.authorizedKeys.keyFiles = [
-      (../../hosts/godel/authorized_keys/efortmeyer_godel_ed25519.pub)
-      (../../hosts/godel/authorized_keys/manna_godel_ed25519.pub)
-    ];
-  };
-
-  # ─────────────────────────────────────────────────────────────────────────────
-  # Zsh (Oh‑My‑Zsh + p10k) — clean, reproducible, no stray /etc edits required
-  # ─────────────────────────────────────────────────────────────────────────────
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    histSize = 100000;
-    setOptions = [
-      "HIST_IGNORE_ALL_DUPS"
-      "HIST_FIND_NO_DUPS"
-      "EXTENDED_HISTORY"
-      "SHARE_HISTORY"
-    ];
-
-
-    syntaxHighlighting.enable = true;
-    autosuggestions.enable = true;
-
-    # OMZ will be sourced automatically; DO NOT source $ZSH/oh-my-zsh.sh yourself
-    ohMyZsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "docker"
-        "man"
-        "ssh-agent"
-      ];
-    };
-
-    # Minimal /etc/zshrc additions (interactive shells)
-    shellInit = ''
-      # Less noisy ctrl-s/ctrl-q
-      stty -ixon 2>/dev/null || true
-
-      # Aliases
-      alias ll='ls -alF --color=auto'
-      alias la='ls -A --color=auto'
-      alias l='ls -CF --color=auto'
-
-      # Tiny header when SSH-ing into godel (stage-2, not initrd)
-      #if [ "$(hostname)" = "godel" ] && [ -n "$SSH_CONNECTION" ]; then
-      #  printf "\033[36m==> Connected to godel (stage-2)\033[0m\n"
-      #fi
-
-      export EDITOR=vim
-    '';
   };
 }
