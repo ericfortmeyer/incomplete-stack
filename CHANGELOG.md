@@ -1,3 +1,9 @@
+## 0.11.2 (2026-07-03)
+
+### Refactor
+
+- **godel**: use port 5443 for tls connections (#33)
+
 ## 0.11.1 (2026-07-03)
 
 ### Refactor
