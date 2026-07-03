@@ -1,3 +1,9 @@
+## 0.11.1 (2026-07-03)
+
+### Refactor
+
+- **godel**: use environment options for aliases and env variables (#32)
+
 ## 0.11.0 (2026-07-02)
 
 ### Feat
