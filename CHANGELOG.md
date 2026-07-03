@@ -1,3 +1,9 @@
+## 0.11.0 (2026-07-02)
+
+### Feat
+
+- **godel**: install custom tool dependencies (#31)
+
 ## 0.10.0 (2026-07-02)
 
 ### Feat
