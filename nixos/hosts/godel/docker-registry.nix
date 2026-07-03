@@ -1,7 +1,7 @@
 {
   services.docker-registry = {
     enable = true;
-    port = 5000;
+    port = 5443;
     basicAuthFile = "/etc/docker-registry/secrets/htpasswd";
     tlsCert = "/etc/docker-registry/certs/cert.pem";
     tlsKey = "/etc/docker-registry/certs/key.pem";
