@@ -1,6 +1,8 @@
 { config, ... }:
 
 {
-  virtualisation.docker.enable = true;
-  virtualisation.docker.enableOnBoot = true;
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
 }

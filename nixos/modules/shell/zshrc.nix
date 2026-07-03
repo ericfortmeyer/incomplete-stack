@@ -1,5 +1,5 @@
 # users + zsh module (e.g., in hosts/godel.nix or your per-host module)
-{ pkgs, projectRoot, ... }:
+{ ... }:
 {
   # Minimal /etc/zshrc additions (interactive shells)
   programs.zsh.shellInit = ''

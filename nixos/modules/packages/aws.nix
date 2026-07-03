@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   environment.defaultPackages = with pkgs; [
-    docker-compose
-    podman
-    podman-compose
+    awscli
+    aws-iam-authenticator
+    granted
   ];
 }

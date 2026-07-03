@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
+  environment.defaultPackages = with pkgs; [
     bind
     inetutils
     iperf3
