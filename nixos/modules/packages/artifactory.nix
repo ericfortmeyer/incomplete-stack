@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
   environment.defaultPackages = with pkgs; [
-    docker-compose
-    podman
-    podman-compose
+    jfrog-cli
   ];
 }

@@ -3,11 +3,12 @@
 {
   imports = [
     ./avahi.nix
-    ./desktopManager.nix
-    ./displayManager.nix
+    ./desktop-manager.nix
+    ./display-manager.nix
     ./docker-registry.nix
     ./openssh.nix
     ./systemd.nix
+    ./time.nix
     ./virtualisation.nix
     ./xserver.nix
   ];

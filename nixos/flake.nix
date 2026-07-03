@@ -15,9 +15,6 @@
       modules = [
         ./hosts/godel
       ];
-      specialArgs = {
-        projectRoot = rootPath;
-      };
     };
   };
 }

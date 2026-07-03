@@ -116,6 +116,6 @@ in
       };
     };
 
-    environment.systemPackages = [ pkgs.distribution ];
+    environment.defaultPackages = [ pkgs.distribution ];
   };
 }
