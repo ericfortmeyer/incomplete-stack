@@ -1,5 +1,5 @@
 # keep this separate module or same file, your choice
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     zsh

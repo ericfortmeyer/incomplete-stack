@@ -1,5 +1,3 @@
-{ config, ... }:
-
 {
   services.docker-registry = {
     enable = true;
