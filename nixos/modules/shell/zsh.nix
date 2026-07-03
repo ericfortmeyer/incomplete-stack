@@ -1,5 +1,3 @@
-# users + zsh module (e.g., in hosts/godel.nix or your per-host module)
-{ ... }:
 {
   # ─────────────────────────────────────────────────────────────────────────────
   # Zsh (Oh‑My‑Zsh + p10k) — clean, reproducible, no stray /etc edits required

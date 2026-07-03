@@ -1,5 +1,3 @@
-{ config, ... }:
-
 {
   # ────────────────────────────────────────────────────────────────────────────
   # Bootloader (BIOS + GPT with GRUB; copies kernels to /boot)
@@ -10,5 +8,4 @@
     forceInstall = true;
     copyKernels = true;
   };
-
 }

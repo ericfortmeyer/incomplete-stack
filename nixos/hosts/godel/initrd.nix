@@ -16,6 +16,8 @@
             mkCmdKey = pubkey: ''command="systemctl default" ${pubkey}'';
             keys = [
               (builtins.readFile ./authorized_keys/efortmeyer_godel_ed25519.pub)
+              (builtins.readFile ./authorized_keys/efortmeyer_manna_ed25519.pub)
+              (builtins.readFile ./authorized_keys/efortmeyer_samson_ed25519.pub)
               (builtins.readFile ./authorized_keys/manna_godel_ed25519.pub)
             ];
 

@@ -2,10 +2,12 @@
 { pkgs, ... }:
 {
   imports = [
+    ../shell/aliases.nix
     ../shell/autocompletion.nix
     ../shell/omz.nix
     ../shell/p10k.nix
     ../shell/syntaxHighlighting.nix
+    ../shell/variables.nix
   ];
 
   users.users.efortmeyer = {
