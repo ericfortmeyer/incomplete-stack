@@ -1,3 +1,9 @@
+## 0.12.0 (2026-07-04)
+
+### Feat
+
+- **godel**: store build cache and images on hard disk, configure build cache size + age
+
 ## 0.11.2 (2026-07-03)
 
 ### Refactor
