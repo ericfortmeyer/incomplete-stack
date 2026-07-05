@@ -3,7 +3,9 @@
     ./avahi.nix
     ./desktop-manager.nix
     ./display-manager.nix
+    ./docker-buildx.nix
     ./docker-registry.nix
+    ./docker-storage.nix
     ./openssh.nix
     ./systemd.nix
     ./time.nix

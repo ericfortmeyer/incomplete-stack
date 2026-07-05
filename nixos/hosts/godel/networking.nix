@@ -1,5 +1,3 @@
-{ config, ... }:
-
 {
   networking.hostName = "godel";
 }

@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   # the yoke binary will be symlinked to the local bin path
   environment.localBinInPath = true;
