@@ -30,7 +30,7 @@ in
 
     buildCacheMaxAge = mkOption {
       type = types.str;
-      default = "720h"; # 30 days
+      default = "4320h";
       description = "Max age for unused cache layers";
     };
 

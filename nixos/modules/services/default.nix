@@ -8,7 +8,6 @@
     ./docker-storage.nix
     ./openssh.nix
     ./systemd.nix
-    ./time.nix
     ./virtualisation.nix
     ./xserver.nix
   ];

@@ -4,6 +4,7 @@ with lib;
 
 let
   cfg = config.services.docker-registry;
+  networkingCfg = config.networking;
 in
 {
   options.services.docker-registry = {
@@ -64,10 +65,13 @@ in
     environment.etc."docker-registry/config.yml".text =
       let
         authBlock = optionalString (cfg.basicAuthFile != null) ''
-          auth:
-            htpasswd:
-              realm: Docker Registry
-              path: ${cfg.basicAuthFile}
+          #########################################
+          # use this registry as a mirror for now #
+          #########################################
+          # auth:
+          #   htpasswd:
+          #     realm: Docker Registry
+          #     path: ${cfg.basicAuthFile}
         '';
         tlsBlock = optionalString (cfg.tlsCert != null && cfg.tlsKey != null) ''
           tls:
@@ -83,8 +87,11 @@ in
         storage:
           filesystem:
             rootdirectory: ${cfg.dataDir}
+        proxy:
+          remoteurl: https://registry-1.docker.io
         http:
-          addr: :${toString cfg.port}
+          addr: 0.0.0.0:${toString cfg.port}
+          host: http://${networkingCfg.hostName}:${toString cfg.port}
           ${tlsBlock}
           headers:
             X-Content-Type-Options:
