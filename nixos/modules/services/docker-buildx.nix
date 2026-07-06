@@ -25,7 +25,7 @@ in
 
     garbageCollectInterval = mkOption {
       type = types.str;
-      default = "7d";
+      default = "4320h";
       description = "How often to run buildx cache GC";
     };
   };
@@ -36,17 +36,17 @@ in
     [worker.oci]
       enabled = true
       gc = true
-      reservedSpace = "30%"
-      maxUsedSpace = "60%"
-      minFreeSpace = "20GB"
+      reservedSpace = "20%"
+      maxUsedSpace = "75%"
+      minFreeSpace = "50GB"
 
     [[worker.oci.gcpolicy]]
-      keepDuration = "168h"
+      keepDuration = "4320h"
       filters = [ "type==source.local", "type==exec.cachemount"]
 
     [[worker.oci.gcpolicy]]
       all = true
-      keepDuration = "0s"
+      keepDuration = "2880h"
     '';
   };
 }

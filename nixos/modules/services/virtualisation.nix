@@ -4,6 +4,8 @@
 with lib;
 
 let
+  networkingCfg = config.networking;
+  registryCfg = config.services.docker-registry;
   dockerCfg = config.virtualisation.docker;
   storageCfg = config.services.docker-storage;
 in
@@ -28,10 +30,22 @@ in
       ];
 
       # Logging
-      log-driver = "journald";
+      log-driver = "local";
+      log-opts = {
+        "max-size" = "10m";
+        "max-file" = "3";
+      };
 
       # Insecure registry (your local one—adjust as needed)
-      insecure-registries = [ "127.0.0.1:5043" "localhost:5043" ];
+      insecure-registries = [ 
+        "127.0.0.1:${toString registryCfg.port}" 
+        "localhost:${toString registryCfg.port}" 
+        "${networkingCfg.hostName}:${toString registryCfg.port}" 
+      ];
+
+      registry-mirrors = [
+        "http://${networkingCfg.hostName}:${toString registryCfg.port}" 
+      ];
 
       # BuildKit for modern builds
       features = {
@@ -45,8 +59,8 @@ in
           policy = [
             {
               all = true;
-              untagged = true;
-              unused-for = "168h";
+              untagged = false;
+              unused-for = "4320h";
             }
           ];
         };

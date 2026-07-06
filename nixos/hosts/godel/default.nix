@@ -12,6 +12,7 @@
     ./initrd.nix
     ./kernel.nix
     ./networking.nix
+    ./time.nix
     ./yoke.nix
   ];
 }
