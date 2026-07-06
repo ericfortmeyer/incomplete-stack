@@ -1,3 +1,13 @@
+## 0.13.0 (2026-07-06)
+
+### Feat
+
+- **godel**: add aggressive build/image retention + repo mirroring
+
+### Fix
+
+- **godel**: correct build gc configuration
+
 ## 0.12.0 (2026-07-04)
 
 ### Feat
