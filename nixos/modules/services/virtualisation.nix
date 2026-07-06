@@ -52,15 +52,30 @@ in
         buildkit = true;
       };
 
-      # Image GC policy: aggressive cleanup of unused layers
       builder = {
         gc = {
           enabled = true;
           policy = [
             {
+              reservedSpace = "300GB";
+              keepDuration = ["4320h"];
+              filter = [
+                "type=source.local"
+              ];
+            }
+            {
+              reservedSpace = "300GB";
+              keepDuration = ["4320h"];
+              filter = [
+                "type=exec.cachemount"
+              ];
+            }
+            {
+              reservedSpace = "500GB";
+            }
+            {
+              reservedSpace = "750GB";
               all = true;
-              untagged = false;
-              unused-for = "4320h";
             }
           ];
         };
@@ -69,8 +84,7 @@ in
   };
 
   # ─────────────────────────────────────────────────────────────────────────
-  # Optionally wire in cold storage + buildx modules
+  # Optionally wire in cold storage modules
   # ─────────────────────────────────────────────────────────────────────────
   services.docker-storage.enable = mkDefault true;
-  services.docker-buildx.enable = mkDefault true;
 }
