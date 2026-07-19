@@ -1,3 +1,9 @@
+## 0.14.0 (2026-07-18)
+
+### Feat
+
+- **godel**: add docker architecture documentation
+
 ## 0.13.0 (2026-07-06)
 
 ### Feat
