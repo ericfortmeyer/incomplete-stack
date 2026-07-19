@@ -61,6 +61,8 @@ ssh -o RequestTTY=force -p 2222 root@<initrd-ip> systemd-tty-ask-password-agent 
 
 ## Documentation
 
+- [Philosophy](./docs/philosophy.md)
+- [Docker Architecture](./docs/docker-architecture.md)
+- [Why NixOS?](./docs/nixos.md)
 - [Frankenstein](./docs/frankenstein/README.md)
 - [Network](./docs/network.md)
-- [Philosophy](./docs/philosophy.md)
