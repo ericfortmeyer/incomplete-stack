@@ -1,3 +1,9 @@
+## 0.15.0 (2026-08-12)
+
+### Feat
+
+- **initramfs-tools**: add boot hooks and scripts
+
 ## 0.14.0 (2026-07-18)
 
 ### Feat
