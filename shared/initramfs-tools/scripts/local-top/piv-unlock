@@ -16,8 +16,7 @@ esac
 luks_unlock() {
 	case "$CRYPTTAB_OPTIONS" in
 		*luks*)
-			/lib/cryptsetup/askpass "Enter PIN for $CRYPTTAB_NAME: " | \
-                   		/usr/sbin/cryptsetup --token-only open "$CRYPTTAB_SOURCE" "$CRYPTTAB_NAME" --key-file=-
+			/usr/sbin/cryptsetup --token-only open "$CRYPTTAB_SOURCE" "$CRYPTTAB_NAME" --key-file=-
 		  	;;
                 *)
 		    return 0
