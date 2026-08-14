@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -i
+
+PREREQ=""
+
+prereqs()
+{
+    echo "$PREREQ"
+}
+
+case "$1" in
+	prereqs)
+		prereqs
+		exit 0
+		;;
+esac
+
+. /usr/share/initramfs-tools/hook-functions
+
+for so in $(ldconfig -p | sed -nr 's/^\s*(libp11-kit|opensc-pkcs11)\.so\.[0-9]+\s.*=>\s*//p'); do
+    copy_exec "$so"
+done
+
+if [ -f /usr/lib/x86_64-linux-gnu/cryptsetup/libcryptsetup-token-systemd-pkcs11.so ]; then
+	copy_exec /usr/lib/x86_64-linux-gnu/cryptsetup/libcryptsetup-token-systemd-pkcs11.so
+fi
+
+if [ -f /usr/sbin/pcscd ]; then
+	copy_exec /usr/sbin/pcscd
+fi
+
+find /usr/lib/pcsc -name "*.so" | while read -r item; do copy_exec "$item"; done
+find /usr/lib/pcsc -name "*.plist" | while read -r item; do copy_file plist "$item"; done
+find /usr/lib/x86_64-linux-gnu -name "libpcsclite*.so*" | while read -r item; do copy_exec "$item"; done
+find /usr/lib/x86_64-linux-gnu -name "*p11*.so*" | while read -r item; do copy_exec "$item"; done
+find /usr/lib/x86_64-linux-gnu/pkcs11 -name "*.so*" | while read -r item; do copy_exec "$item"; done
+
