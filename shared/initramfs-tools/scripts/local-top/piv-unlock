@@ -1,0 +1,28 @@
+#!/bin/sh
+
+PREREQ="cryptopensc"
+prereqs() {
+	echo "$PREREQ"
+}
+case "$1" in
+	prereqs)
+		prereqs
+		exit 0
+		;;
+esac
+
+. /lib/cryptsetup/functions
+
+luks_unlock() {
+	case "$CRYPTTAB_OPTIONS" in
+		*luks*)
+			/lib/cryptsetup/askpass "Enter PIN for $CRYPTTAB_NAME: " | \
+                   		/usr/sbin/cryptsetup --token-only open "$CRYPTTAB_SOURCE" "$CRYPTTAB_NAME" --key-file=-
+		  	;;
+                *)
+		    return 0
+		    ;;
+	esac
+}
+
+crypttab_foreach_entry luks_unlock
