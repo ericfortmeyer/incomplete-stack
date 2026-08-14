@@ -1,3 +1,13 @@
+## 0.16.0 (2026-08-13)
+
+### Feat
+
+- **initramfs**: add smartcard-backed LUKS unlock support
+
+### Fix
+
+- **initramfs**: remove askpass from cryptsetup open script
+
 ## 0.15.0 (2026-08-12)
 
 ### Feat
