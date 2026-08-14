@@ -5,7 +5,7 @@ case $1 in prereqs) prereqs; exit 0 ;; esac
 
 if [ -x /usr/sbin/pcscd ]; then
     mkdir -p /run/pcscd;
-    /usr/sbin/pcscd --info --color;
+    /usr/sbin/pcscd --disable-polkit --foreground --color;
 
     sleep 2;
 fi

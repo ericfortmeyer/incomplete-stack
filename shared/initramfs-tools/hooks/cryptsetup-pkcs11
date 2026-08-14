@@ -1,38 +1,40 @@
 #!/bin/sh
 
-set -i
+set -e
 
 PREREQ=""
 
-prereqs()
-{
-    echo "$PREREQ"
+prereqs() { 
+	echo "$PREREQ"; 
 }
 
-case "$1" in
-	prereqs)
-		prereqs
-		exit 0
-		;;
+case "$1" in 
+	prereqs) 
+		prereqs; 
+		exit 0 
+		;; 
 esac
 
 . /usr/share/initramfs-tools/hook-functions
 
-for so in $(ldconfig -p | sed -nr 's/^\s*(libp11-kit|opensc-pkcs11)\.so\.[0-9]+\s.*=>\s*//p'); do
-    copy_exec "$so"
-done
-
-if [ -f /usr/lib/x86_64-linux-gnu/cryptsetup/libcryptsetup-token-systemd-pkcs11.so ]; then
-	copy_exec /usr/lib/x86_64-linux-gnu/cryptsetup/libcryptsetup-token-systemd-pkcs11.so
-fi
-
-if [ -f /usr/sbin/pcscd ]; then
+if [ -x /usr/sbin/pcscd ]; then
 	copy_exec /usr/sbin/pcscd
 fi
 
-find /usr/lib/pcsc -name "*.so" | while read -r item; do copy_exec "$item"; done
-find /usr/lib/pcsc -name "*.plist" | while read -r item; do copy_file plist "$item"; done
-find /usr/lib/x86_64-linux-gnu -name "libpcsclite*.so*" | while read -r item; do copy_exec "$item"; done
-find /usr/lib/x86_64-linux-gnu -name "*p11*.so*" | while read -r item; do copy_exec "$item"; done
-find /usr/lib/x86_64-linux-gnu/pkcs11 -name "*.so*" | while read -r item; do copy_exec "$item"; done
+# copy binaries and dynamic links to initramfs
+find /usr/lib/x86_64-linux-gnu -maxdepth 1 \
+    \(\
+		-name "libpcsclite.so*" -o \
+		-name "libusb*" -o \
+		-name "*pkcs11*" -o \
+		-name "*opensc*" -o \
+		-name "*p11*" \
+	\) \
+    -exec sh -c '. /usr/share/initramfs-tools/hook-functions; copy_exec "$1"' sh {} \;
+find /usr/lib/x86_64-linux-gnu/pkcs11 -name "*.so" -exec sh -c '. /usr/share/initramfs-tools/hook-functions; copy_exec "$1"' sh {} \; 2>/dev/null
+find /usr/lib/x86_64-linux-gnu/cryptsetup -name "*.so" -exec sh -c '. /usr/share/initramfs-tools/hook-functions; copy_exec "$1"' sh {} \; 2>/dev/null
+find /usr/lib/pcsc -name "*.so" -exec sh -c '. /usr/share/initramfs-tools/hook-functions; copy_exec "$1"' sh {} \; 2>/dev/null
 
+# copy text files to initramfs
+find /usr/lib/pcsc -name "*.plist" -exec sh -c '. /usr/share/initramfs-tools/hook-functions; copy_file plist "$1"' sh {} \; 2>/dev/null
+find /usr/share/p11-kit -name "*.module" -exec sh -c '. /usr/share/initramfs-tools/hook-functions; copy_file module "$1"' sh {} \; 2>/dev/null
