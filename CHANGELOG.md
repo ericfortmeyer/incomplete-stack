@@ -1,3 +1,9 @@
+## 0.17.0 (2026-08-17)
+
+### Feat
+
+- **pam_pkcs11**: refactor smartcard auth with CN-to-login mapping
+
 ## 0.16.0 (2026-08-13)
 
 ### Feat
