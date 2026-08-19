@@ -1,3 +1,9 @@
+## 0.18.0 (2026-08-19)
+
+### Feat
+
+- **smartcard**: enable PIV smartcard unlock for LUKS and GDM login
+
 ## 0.17.0 (2026-08-17)
 
 ### Feat
