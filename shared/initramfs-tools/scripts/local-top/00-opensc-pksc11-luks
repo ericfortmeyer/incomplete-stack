@@ -33,6 +33,12 @@ fi
 # pcscd uses syslog which is not available (use --error or --critical to filter
 # out debug message clutter):
 #    /usr/sbin/pcscd --error --foreground &
-/usr/sbin/pcscd --foreground --debug --disable-polkit &
-sleep 2 
-echo $! >/run/pcscd.pid
+/usr/sbin/pcscd --foreground --disable-polkit &
+PID=$!
+echo $PID >/run/pcscd.pid
+
+# Wait for pcscd to create its socket
+for i in $(seq 1 50); do
+    [ -S /run/pcscd/pcscd.comm ] && break
+    sleep 0.1
+done

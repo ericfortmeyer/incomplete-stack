@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PREREQ="cryptopensc"
+PREREQ=""
 prereqs() {
 	echo "$PREREQ"
 }

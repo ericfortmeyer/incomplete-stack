@@ -24,8 +24,9 @@ fi
 # copy binaries and dynamic links to initramfs
 find /usr/lib/x86_64-linux-gnu -maxdepth 1 \
     \(\
-		-name "libpcsclite.so*" -o \
+		-name "libpcsclite*.so*" -o \
 		-name "libusb*" -o \
+		-name "libgcc_s.so*" -o \
 		-name "*pkcs11*" -o \
 		-name "*opensc*" -o \
 		-name "*p11*" \
