@@ -17,6 +17,13 @@ The working login setup uses:
 - `gdm-smartcard-pkcs11-exclusive` instead of `gdm-smartcard-sssd-exclusive`
 - a smartcard with the correct X.509 certificate and PKCS #11 identity mapping
 
+## Required Packages
+
+- `opensc`
+- `opensc-pkcs11`
+- `pcscd`
+- `libpam-pkcs11`
+
 ## What works
 
 - Smartcard login at the GDM screen
@@ -88,7 +95,44 @@ Smart Card authentication: Required
 Smart Card removal action: lock-screen
 ```
 
-Yes, that makes sense. You should explain the file setup first, then show the `update-alternatives` commands for each service. Here's how to add it:
+---
+
+## Troubleshooting: Direct dconf-defaults Configuration
+
+If `gdm-config` does not apply your smartcard settings to the GDM login screen, the greeter configuration file must be edited directly.
+
+### Why Standard Tools Fail
+
+- `gdm-config`, `gsettings`, and `dconf` modify the **calling user's** dconf database
+- The GDM greeter runs under a separate unprivileged user (`debian-gdm`) with its own isolated dconf database
+- These standard tools cannot modify the greeter's configuration
+
+### Fallback: Direct File Edit
+
+Edit `/etc/gdm3/greeter.dconf-defaults` as root:
+
+```bash
+sudo vim /etc/gdm3/greeter.dconf-defaults
+```
+
+Add or uncomment:
+
+```ini
+[org/gnome/login-screen]
+enable-smartcard-authentication=true
+```
+
+Then reload the GDM configuration:
+
+```bash
+vim dpkg-reconfigure gdm3
+```
+
+Store this configuration file in version control at:
+
+```
+hosts/hiram/etc/gdm3/greeter.dconf-defaults
+```
 
 ---
 
