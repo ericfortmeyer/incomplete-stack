@@ -1,6 +1,8 @@
 #!/bin/sh
 
-PREREQ=""
+set -e
+
+PREREQ="00-opensc-pksc11-luks"
 prereqs() {
 	echo "$PREREQ"
 }
@@ -16,7 +18,7 @@ esac
 luks_unlock() {
 	case "$CRYPTTAB_OPTIONS" in
 		*luks*)
-			/usr/sbin/cryptsetup --token-only open "$CRYPTTAB_SOURCE" "$CRYPTTAB_NAME" --key-file=-
+			/usr/sbin/cryptsetup --token-only open "$CRYPTTAB_SOURCE" "$CRYPTTAB_NAME" --tries 10
 		  	;;
                 *)
 		    return 0

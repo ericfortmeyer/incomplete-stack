@@ -2,13 +2,11 @@
 
 set -e
 
-PREREQ="udev"
-
+PREREQ=""
 prereqs()
 {
     echo "$PREREQ"
 }
-
 case $1 in
     prereqs)
         prereqs
@@ -22,8 +20,6 @@ if [ ! -x /usr/sbin/pcscd ]; then
     exit 0
 fi
 
-. /scripts/functions
-
 # Start pcscd daemon normally:
 #   start-stop-daemon --start --quiet \
 #       --pidfile /run/pcscd.pid \
@@ -33,12 +29,18 @@ fi
 # pcscd uses syslog which is not available (use --error or --critical to filter
 # out debug message clutter):
 #    /usr/sbin/pcscd --error --foreground &
-/usr/sbin/pcscd --foreground --disable-polkit &
+/usr/sbin/pcscd --foreground \
+    --error \
+    --disable-polkit  \
+    --force-reader-polling \
+    --reader-name-no-serial \
+    --max-thread 5 &
+
 PID=$!
 echo $PID >/run/pcscd.pid
 
 # Wait for pcscd to create its socket
-for i in $(seq 1 50); do
+for i in $(seq 1 100); do
     [ -S /run/pcscd/pcscd.comm ] && break
     sleep 0.1
 done
