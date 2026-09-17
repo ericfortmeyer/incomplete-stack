@@ -1,3 +1,13 @@
+## 0.19.0 (2026-09-17)
+
+### Feat
+
+- **pam.d**: add polkit smartcard alternative
+
+### Refactor
+
+- **initramfs-tools**: consolidate and enhance pcscd startup for LUKS unlock
+
 ## 0.18.0 (2026-08-19)
 
 ### Feat
