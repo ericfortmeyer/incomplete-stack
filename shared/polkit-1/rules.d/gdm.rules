@@ -1,0 +1,20 @@
+polkit.addRule(function(action, subject) {
+    const allowedActions = [
+        "org.debian.pcsc-lite.access_pcsc",
+        "org.debian.pcsc-lite.access_card"
+    ];
+
+    const allowedUsers = [
+        "Debian-gdm", 
+        "nobody"
+    ];
+
+    if (allowedActions.indexOf(action.id) === -1)
+        return undefined;
+
+    if (subject.local && subject.active &&
+        allowedUsers.indexOf(subject.user) !== -1) {
+        return polkit.Result.YES;
+    }
+});
+
