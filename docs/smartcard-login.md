@@ -158,9 +158,9 @@ sudo update-alternatives --install /etc/pam.d/gdm-smartcard gdm-smartcard \
   /etc/pam.d/gdm-smartcard-pkcs11-exclusive 30
 
 # Sudo
-sudo update-alternatives --install /etc/pam.d/sudo sudo \
+sudo update-alternatives --install /etc/pam.d/sudo pam-sudo \
   /etc/pam.d/sudo-smartcard-exclusive 40
-sudo update-alternatives --install /etc/pam.d/sudo sudo \
+sudo update-alternatives --install /etc/pam.d/sudo pam-sudo \
   /etc/pam.d/sudo-default 30
 
 # Login
@@ -173,8 +173,30 @@ sudo update-alternatives --install /etc/pam.d/login login \
 To switch authentication types for any service:
 
 ```bash
-sudo update-alternatives --config sudo
+sudo update-alternatives --config pam-sudo
 sudo update-alternatives --config login
 ```
+
+### Why the PAM alternative is named `pam-sudo`
+
+The PAM switch for sudo was originally registered under the alternative name `sudo`.
+That name is shared across the whole system, and `update-alternatives --install` does
+not reject a name that already exists. It adds the new path to the existing group and
+lets priority decide which entry is active. Ubuntu 26.04 ships its own `sudo`
+alternative (from `sudo-rs`), so when this repo's entry was installed under the same
+name, the two groups competed and the upgrade conflicted.
+
+Renaming the alternative to `pam-sudo` gives this repo a name that no sudo package
+manages, so the install creates its own group under `/etc/alternatives/pam-sudo`.
+The generic path `/etc/pam.d/sudo` does not change. It is still the path PAM reads;
+only the alternative name behind it is different.
+
+Hiram (Debian trixie) does not currently ship a conflicting `sudo` alternative, so the
+rename there is preventive. It keeps the setup identical across hosts and avoids the
+same conflict if a later release adds one.
+
+Because the sudo packages may change their alternatives in future releases, confirm
+after each OS upgrade that `update-alternatives --query pam-sudo` reports
+`Link: /etc/pam.d/sudo` and that `/etc/pam.d/sudo` is still a symlink.
 
 > Note: See [Hardware-Specific Setup](./HARDWARE-NOTES.md)
