@@ -1,3 +1,9 @@
+## 0.20.1 (2026-11-26)
+
+### Fix
+
+- **smartcard**: rename sudo pam alternative to pam-sudo
+
 ## 0.20.0 (2026-11-14)
 
 ### Feat
