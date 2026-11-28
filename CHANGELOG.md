@@ -1,3 +1,9 @@
+## 0.20.2 (2026-11-27)
+
+### Fix
+
+- **godel**: accept piv smartcard ssh key
+
 ## 0.20.1 (2026-11-26)
 
 ### Fix
